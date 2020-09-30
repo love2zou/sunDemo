@@ -80,6 +80,18 @@ module sun
 		public static readonly HORIZONTAL:string="horizontal";
 		/**布局 竖版*/
 		public static readonly VERTICAL:string="vertical";
+		/**方向 顶部*/
+		public static readonly TOP:string="top";
+		/**方向 底部*/
+		public static readonly BOTTOM:string="bottom";
+		/**方向 左*/
+		public static readonly LEFT:string="left";
+		/**方向 右*/
+		public static readonly RIGHT:string="right";
+		/**方向 居中*/
+		public static readonly CENTER:string="center";
+		/**方向 自定义坐标*/
+		public static readonly CUSTOM:string="custom";
 
 		/**形状 方块*/
 		public static readonly SHAPE_RECT:string="shape rect";
@@ -137,7 +149,8 @@ module sun
 		//默认：primary颜色
 		public static get skinNormal():number{return 0X409eff};//显示蓝色
 		public static get skinDown():number{return 0X66b1ff};//按下背景色
-
+		public static get progressBgColor():number{return 0Xebeef5};//progress bgColor
+		
 		//随机颜色
 		public static get random():number{return Math.random()*0XFFFFFF};
 
@@ -147,23 +160,30 @@ module sun
 		public static get defaultBgColor():number {return 0xf7f5fb};
 		
 		//primary颜色
-		public static get darkBlue():number {return 0X409eff};//深蓝
-		public static get lightBlue():number {return 0Xecf5ff};//浅蓝
+		public static get blueNormal():number {return 0X409eff};//深蓝
+		public static get blueNormal2():number {return 0xecf5ff};//浅蓝
+		public static get blueDown():number {return 0X66b1ff};//浅蓝
 		//success颜色
-		public static get darkGreen():number {return 0X67c23a};//深绿
-		public static get lightGreen():number {return 0Xf0f9eb};//浅绿
+		public static get greenNormal():number {return 0X67c23a};//深绿	
+		public static get greenNormal2():number {return 0Xf0f9eb};//浅绿
+		public static get greenDown():number {return 0X85ce61};//浅绿
 		//warning颜色
-		public static get darkYellow():number {return 0Xe6a23c};//深黄
-		public static get lightYellow():number {return 0Xfdf6ec};//浅黄
+		public static get yellowNormal():number {return 0Xe6a23c};//深黄
+		public static get yellowNormal2():number {return 0Xfdf6ec};//浅黄
+		public static get yellowDown():number {return 0Xebb563};//浅黄
 		//error颜色
-		public static get darkRed():number {return 0Xf56c6c};//深黄
-		public static get lightRed():number {return 0Xfef0f0};//浅黄
+		public static get redNormal():number {return 0Xf56c6c};//深红
+		public static get redNormal2():number {return 0Xfef0f0};//浅红
+		public static get redDown():number {return 0Xf78989};//浅红
 		//不重要颜色
-		public static get darkGray():number {return 0X909399};//深灰
-		public static get lightGray():number {return 0Xf4f4f5};//浅灰
+		public static get grayNormal():number {return 0X909399};//深灰
+		public static get grayNormal2():number {return 0Xf4f4f5};//浅灰
+		public static get grayDown():number {return 0Xa6a9ad};//浅灰
 
-		public static get black():number {return 0X151515};
-		public static get gray():number {return 0X666666};
+		public static get switchOnDown():number{return 0X13ce66};//开-绿色
+		public static get switchOffDown():number{return 0Xff4949};//关-红色
+
+		public static get black():number {return 0X101010};
 		public static get red():number {return 0XFF0000};
 		public static get green():number {return 0X00FF00};
 		public static get bule():number {return 0X0000FF};
@@ -191,31 +211,44 @@ module sun
 	/**皮肤 */
 	export class Skin
 	{
-		/**随机色的方与圆 */
-		public static get randomRect():Sprite{return sun.SunUI.getRect(60,60,sun.Color.random)};
-		public static get randomCircle():Sprite{return sun.SunUI.getCircle(50,sun.Color.random)};
-		/**默认点 */
-		public static get pointNormal():Sprite{return sun.SunUI.getCircle(6,sun.Color.black)};
-		public static get pointDown():Sprite{return sun.SunUI.getCircle(6,sun.Color.gray)};
 		/**默认按钮 */
 		public static get buttonNormal():Sprite{return sun.SunUI.getRect(60,30,sun.Color.skinNormal)};
 		public static get buttonDown():Sprite{return sun.SunUI.getRect(60,30,sun.Color.skinDown)};
+		/** 主要按钮-primary */
+		public static get primaryNormal():Sprite{return sun.SunUI.getRoundRect(60,30,sun.Color.blueNormal)};
+		public static get primaryNormal2():Sprite{return sun.SunUI.getRoundRect(60,30,sun.Color.blueNormal2)};
+		public static get primaryDown():Sprite{return sun.SunUI.getRoundRect(60,30,sun.Color.blueDown)};
+		/** 成功按钮-success */
+		public static get successNormal():Sprite{return sun.SunUI.getRoundRect(60,30,sun.Color.greenNormal)};
+		public static get successDown():Sprite{return sun.SunUI.getRoundRect(60,30,sun.Color.greenDown)};
+		/** 警告按钮-warning */
+		public static get warningNormal():Sprite{return sun.SunUI.getRoundRect(60,30,sun.Color.yellowNormal)};
+		public static get warningDown():Sprite{return sun.SunUI.getRoundRect(60,30,sun.Color.yellowDown)};
+		/** 危险按钮-error */
+		public static get errorNormal():Sprite{return sun.SunUI.getRoundRect(60,30,sun.Color.redNormal)};
+		public static get errorDown():Sprite{return sun.SunUI.getRoundRect(60,30,sun.Color.redDown)};
+		/**随机色的方与圆 */
+		public static get randomRect():Sprite{return sun.SunUI.getRect(60,60,sun.Color.random)};
+		public static get randomCircle():Sprite{return sun.SunUI.getCircle(50,sun.Color.random)};
+		/**默认点-轮播 */
+		public static get pointNormal():Sprite{return sun.SunUI.getCircle(6,sun.Color.white,0.4)};
+		public static get pointDown():Sprite{return sun.SunUI.getCircle(6,sun.Color.white)};
 		/**默认单选框 */
 		public static get radioOff():Sprite{return sun.SunUI.getRadioCircle(sun.Color.white,sun.Color.white)};
-		public static get radioOn():Sprite{return sun.SunUI.getRadioCircle(sun.Color.white,sun.Color.black,1)};
+		public static get radioOn():Sprite{return sun.SunUI.getRadioCircle(sun.Color.blueNormal,sun.Color.white,1)};
 		/**默认复选框 */
 		public static get checkBoxOff():Sprite{return sun.SunUI.getCheckBoxRect(sun.Color.white,sun.Color.white)};
-		public static get checkBoxOn():Sprite{return sun.SunUI.getCheckBoxRect(sun.Color.white,sun.Color.black,1)};
+		public static get checkBoxOn():Sprite{return sun.SunUI.getCheckBoxRect(sun.Color.blueNormal,sun.Color.white,1)};
 		/**默认开关 */
-		public static get switchOff():Sprite{return sun.SunUI.getSwitch(sun.Color.skinNormal,sun.Color.white)};
-		public static get switchOn():Sprite{return sun.SunUI.getSwitch(sun.Color.skinDown,sun.Color.white,1)};
+		public static get switchOff():Sprite{return sun.SunUI.getSwitch(sun.Color.switchOffDown,sun.Color.white)};
+		public static get switchOn():Sprite{return sun.SunUI.getSwitch(sun.Color.switchOnDown,sun.Color.white,1)};
 		/**默认进度条 */
-		public static get progressBackground():Sprite{return sun.SunUI.getRect(300,20,sun.Color.skinDown);}
-		public static get progressValue():Sprite{return sun.SunUI.getRect(300,20,sun.Color.skinNormal);}
+		public static get progressBackground():Sprite{return sun.SunUI.getRoundRect(300,10,sun.Color.progressBgColor,15,15);}
+		public static get progressValue():Sprite{return sun.SunUI.getRoundRect(300,10,sun.Color.blueNormal,15,15);}
 		/**默认滑动器 */
-		public static get sliderBackground():Sprite{return sun.SunUI.getRect(300,10,sun.Color.skinDown);}
-		public static get sliderValue():Sprite{return sun.SunUI.getRect(300,10,sun.Color.skinNormal);}
-		public static get sliderBar():Sprite{return sun.SunUI.getCircle(15,sun.Color.white);}
+		public static get sliderBackground():Sprite{return sun.SunUI.getRoundRect(300,10,sun.Color.progressBgColor,15,15);}
+		public static get sliderValue():Sprite{return sun.SunUI.getRoundRect(300,10,sun.Color.skinNormal,15,15);}
+		public static get sliderBar():Sprite{return sun.SunUI.getCircle(12,sun.Color.white);}
 		/**默认滚动条 */
 		public static get scrollBar():Sprite{return sun.SunUI.getRect(10,10,sun.Color.skinNormal);}
 		/**上下页切换组件 */
@@ -223,13 +256,14 @@ module sun
 		public static get pnBarPrevDown():Sprite{return sun.SunUI.getPolygon(3,20,sun.Color.skinDown,180);}
 		public static get pnBarNextNormal():Sprite{return sun.SunUI.getPolygon(3,20,sun.Color.skinNormal);}
 		public static get pnBarNextDown():Sprite{return sun.SunUI.getPolygon(3,20,sun.Color.skinDown);}
-
+		/** 获取单选按钮 @param（文字） */
 		public static getRodatioButton(label:string):BasicButton
 		{
 			var btn:BasicButton=new BasicButton(sun.Skin.radioOff,sun.Skin.radioOn);
 			btn.skinAutoScale=false;
 			btn.label=label;
 			btn.labelColor=sun.Color.black;
+			//设置按钮文字位置
             btn.setLabelPoint(40,0);
 			return btn;
 		}
@@ -534,6 +568,16 @@ module sun
 			s.graphics.endFill();
 			return s;
 		}
+
+		/**得到环形 angle:角度值，r:半径，c:背景色， a:透明度，0到1之间的小数，x y：圆心位置*/
+		public static getRing(angle:number,r:number,c:number=0, a:number=1,x:number=0,y:number=0):Sprite
+		{
+			var s:Sprite=new Sprite();
+			s.graphics.lineStyle(15, c, a);
+        	s.graphics.drawArc(x, y, r, -Math.PI/2, angle * Math.PI / 180 - Math.PI/2, false);//从-90度方向开始画圆
+        	s.graphics.endFill();
+			return s;
+		}
 		/**得到圆形 带上透明度 a:透明度，0到1之间的小数*/
 		public static getCircle(r:number,c:number=0, a:number=1,x:number=0,y:number=0):Sprite
 		{
@@ -613,24 +657,27 @@ module sun
 			s.addChild(text);
 			return s;
 		}
-		/**得到矩形-switchButton bc背景颜色，gc钩选的颜色,type为0是没有钩为1是有钩*/
+		/**得到矩形-switchButton bc背景颜色，gc钩选的颜色,type为0是没有钩，为1是有钩*/
 		public static getSwitch(bc:number=0XFFFFFF,gc:number=0,type:number=0):Sprite
 		{
-			var node:Sprite=sun.SunUI.getRoundRect(80,50,bc,60,60);
-			node.addChild(sun.SunUI.getCircle(22,gc,type==0?25:55,25));
+			var node:Sprite=sun.SunUI.getRoundRect(90,40,bc,50,50);
+			node.addChild(sun.SunUI.getCircle(17,gc,1,type==0?21:70,20));
 			return node;
-		}
+		} 
 		/**得到矩形-复选框 bc背景颜色，gc钩的颜色,type为0是没有钩为1是有钩*/
 		public static getCheckBoxRect(bc:number=0XFFFFFF,gc:number=0,type:number=0):Sprite
 		{
 			var s:Sprite = new Sprite;
-			s.addChild(this.getRect(40,40,bc));
+			//s.addChild(this.getRect(40,40,bc));
+			s.addChild(this.getRoundRect(32,32,bc,4,4));
 			if(type==1){
-				var r:Sprite=new Sprite;
+				var r:Sprite=new Sprite();
 				r.graphics.beginFill(gc);
-				r.graphics.moveTo(0,20);
-				r.graphics.lineTo(20,36);r.graphics.lineTo(44,8);r.graphics.lineTo(36,0);r.graphics.lineTo(20,18);
-				r.graphics.lineTo(12,8);r.graphics.lineTo(0,20);
+				r.graphics.moveTo(4,18);
+				r.graphics.lineTo(12,26);r.graphics.lineTo(28,8);r.graphics.lineTo(26,6);r.graphics.lineTo(12,22);
+				r.graphics.lineTo(6,16);r.graphics.lineTo(4,18);
+				// r.graphics.lineTo(20,36);r.graphics.lineTo(44,8);r.graphics.lineTo(36,0);r.graphics.lineTo(20,18);
+				// r.graphics.lineTo(12,8);r.graphics.lineTo(0,20);
 				s.addChild(r);
 			}
 			return s;
@@ -639,10 +686,10 @@ module sun
 		public static getRadioCircle(bc:number=0XFFFFFF,gc:number=0,type:number=0):Sprite
 		{
 			var s:Sprite = new Sprite;
-			s.addChild(this.getCircle(16,bc,16,16));
+			s.addChild(this.getCircle(16,bc,1,16,16));
 			s.graphics.lineStyle(1,0);
 			if(type==1){
-				var r:Sprite=this.getCircle(8,gc,16,16)
+				var r:Sprite=this.getCircle(6,gc,1,16,16)
 				s.addChild(r);
 			}
 			return s;
@@ -919,10 +966,14 @@ module sun
 	/** 多个面板管理 */
 	export class PanelMoreManager extends BasicBar implements IOnoff
 	{
+		/** 单选按钮 */
 		protected radioButton:RadioButtonBar = new RadioButtonBar();
+		/** 容器 */
 		protected container:SunContainer;
+		/** 面板宽度，面板高度 */
 		protected pWidth:number;
 		protected pHeight:number;
+		/** 当前页 */
 		protected currentPage:number=0;
 		protected posStartX:number=0;
 		protected moveItems:PanelBar[]=[];
@@ -934,31 +985,38 @@ module sun
 			this.addChild(this.container);
 			this.radioButton.isAutoLayout=true;
 		}
+		/** 开启监听 */
 		public open():void
 		{
 			this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouch, this);
 		}
+		/** 关闭监听 */
 		public close():void
 		{
 			this.stage.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouch, this);
 		}
+		/** 更新面板显示内容 */
 		public update():void
 		{
+			//移除所有内容
 			this.container.removeChildren();
 			var itemW:number;
 			var itemH:number;
+			//设置每一个面板的宽高
 			if(this.items.length>0){
 				var item:PanelBar=this.items[0];
-				this.container.addChild(item);
+				this.container.addChild(item); 
 				itemW=item.windowRect.width;
 				itemH=item.windowRect.height;
 				this.panelWidth=itemW;
 			}
+			//绘制面板的走马灯圆点
 			var len:number=this.items.length;
 			for(var i:number=0;i<len;i++){
 				var btn:BasicButton=new BasicButton(sun.Skin.pointNormal,sun.Skin.pointDown);
 				this.radioButton.addItem(btn);
 			}
+			//默认选中第一个
 			btn=this.radioButton.getItem(0) as BasicButton;
 			btn.setSkinDown();
 			this.radioButton.x=(itemW-len*22)>>1;
@@ -1260,7 +1318,7 @@ module sun
 		protected skinValue:DisplayObject;
 		protected text:TextField;
 		protected _value:number=0;
-		/*** 参数为显示对象 @param(背景皮肤，实际值皮肤) */
+		/*** 参数为显示对象 @param(背景皮肤，实际值皮肤,是否遮罩) */
 		public constructor(bg:DisplayObject=null,value:DisplayObject=null)
         {
 			super();
@@ -1288,14 +1346,47 @@ module sun
 		{
 			return this._value;
 		}
-		/*** 显示实际值 */
-		public showText(v:string,x:number=-1,y:number=-1):void
+		/** 设置文本字体大小 */
+		set labelSize(value:number)
+		{
+			this.text.size=value;
+		}
+		/**设置角度(环形图使用) */
+		public setRingAngle(angle:number,x:number=0,y:number=0,r:number=100,c:number=0, a:number=1)
+		{
+			var m = sun.SunUI.getRing(angle,r,c,a,x,y);
+			if(this&&this.contains(m))
+				this.removeChild(m);
+			this.addChild(m);
+			this.skinValue.mask = m;
+		}
+
+		/*** 显示实际值：d表示方向 */
+		public showText(v:string,d:string=Const.RIGHT,x:number=0,y:number=0):void
 		{
 			this.text.text=v;
-			if(x==-1)		this.text.x=(this.skinBg.width-this.text.width)>>1
-			else			this.text.x=x;
-			if(y==-1)		this.text.y=this.skinBg.height+5;
-			else			this.text.y=y;
+			if(d == Const.LEFT){
+				this.text.x = this.skinBg.x - 10;
+				this.text.y = this.skinBg.y;
+			}
+			else if(d == Const.TOP){
+				this.text.x = (this.skinBg.width>>1) - 15;
+				this.text.y = -this.skinBg.height - 5;
+			}
+			else if(d == Const.BOTTOM){
+				this.text.x = (this.skinBg.width>>1) - 15;
+				this.text.y = this.skinBg.height + 5;
+			}
+			else if(d == Const.CENTER){
+				this.text.x = (this.skinBg.width>>1) - 15;
+				this.text.y = (this.skinBg.height>>1) - 5;
+			}
+			else if(d == Const.RIGHT){
+				this.text.x = this.skinBg.width + 18;
+				this.text.y = (this.skinBg.height-this.text.height)>>1;
+			}else{
+				this.text.x=x;this.text.y=y;
+			}
 		}
 	}
 	/*** 滑动器，继承进度条ProgressBar，需要实现布局接口ILayout的函数 */
@@ -1328,15 +1419,18 @@ module sun
 		{
 			switch (e.type) {
                 case egret.TouchEvent.TOUCH_BEGIN:
+					this.skinBar.scaleX = this.skinBar.scaleY = 1.2;
 					this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.onTouch, this);
 					this.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.onTouch, this);
 					this.dispEvent(SunEvent.START);
                     break;
 				case egret.TouchEvent.TOUCH_MOVE:
+					this.skinBar.scaleX = this.skinBar.scaleY = 1.2;
 					this.moveDo(e.stageX,e.stageY);
 					this.dispEvent(SunEvent.MOVE);
 				break;
                 case egret.TouchEvent.TOUCH_END:
+					this.skinBar.scaleX = this.skinBar.scaleY = 1;
 					this.stage.removeEventListener(egret.TouchEvent.TOUCH_END, this.onTouch, this);
 					this.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this.onTouch, this);
 					this.dispEvent(SunEvent.OVER);
@@ -1734,10 +1828,10 @@ module sun
 	/** 基础按钮 */
 	export class BasicButton extends SunContainer implements IOnoff
 	{
-		//按钮显示对象
+		/** 按钮显示对象 */
 		protected statusNormal:DisplayObject;
 		protected statusDown:DisplayObject;
-		//显示对象容器
+		/** 显示对象容器 */
 		protected skinContainer:DisplayObjectContainer;
 		protected text:TextField;
 		/**皮肤大小随字体大小变化 */
@@ -1928,20 +2022,24 @@ module sun
 	*/
 	export class MoreSkinButton extends BasicButton
 	{
+		/** 当前值 */
 		protected _currentPage:number=0;
+		/** 皮肤数组 */
 		protected skins:any[];
+		/** 是否可触发事件 */
 		protected _toggleSwitch:Boolean;
 		public constructor(skins:any[])
         {
 			super(skins[0],skins[1]);
 			this.skins=skins;
 		}
-		/**更新到第几个按钮同时刷新皮肤 */
+		/** 更新到第几个按钮同时刷新皮肤 */
 		public updatePage(value:number)
 		{
 			this.currentPage=value;
 			this.setSkinNormal();
 		}
+		/** 更新皮肤，但不刷新皮肤 */
 		set currentPage(value:number)
 		{
 			value=value*2==this.skins.length?0:value;
@@ -1950,14 +2048,17 @@ module sun
 			this.statusDown=this.skins[(value*2)+1];
 			this.setSkinSize();
 		}
+		/** 获取当前值 */
 		get currentPage():number
 		{
 			return this._currentPage;
 		}
+		/** 设置可触摸事件 */
 		set toggleSwitch(value:Boolean)
 		{
 			this._toggleSwitch=value;
 		}
+		/** 绑定触发事件 */
 		protected onTouch(e:egret.TouchEvent):void
 		{
 			if(e.type==egret.TouchEvent.TOUCH_END){
@@ -2046,15 +2147,17 @@ module sun
 		}
 	}
 
-	/** 复选框按钮 */
+	/** 复选框按钮,继承BasicBar:添加元素等 */
 	export class CheckBoxBar extends BasicBar
 	{
+		/** 添加复选按钮 */
 		public addItemLabel(label:string,item:MoreSkinButton=null):void
 		{
 			if(item==null)		item=Skin.getCheckBox(label);
 			else				item.label=label;
 			this.addItem(item)
 		}
+		
 		public addItem(item:BasicButton):void
 		{
 			super.addItem(item);
@@ -2070,6 +2173,9 @@ module sun
 		protected onClick(e:egret.TouchEvent):void
 		{
 			var item:MoreSkinButton=e.currentTarget as MoreSkinButton;
+			//字体颜色改变
+			if(item.currentPage == 1) item.labelColor = sun.Color.blueNormal;
+			else item.labelColor = sun.Color.black;
 			this.dispEvent(sun.SunEvent.CHANGE);
 		}
 		public get selectIndexs():number[]
@@ -2082,16 +2188,19 @@ module sun
 			return nums;
 		}
 	}
-	/**单选框按钮 */
+	/** 单选框按钮 */
 	export class RadioButtonBar extends CheckBoxBar
 	{
+		/** 所选索引 */
 		protected _selectIndex:number;
+		/** 是否自动布局 */
 		public isAutoLayout:Boolean=false;
-		public addItemLabel(label:string,item:BasicButton=null):void
+		/** 添加单选按钮 */
+		 public addItemLabel(label:string,item:BasicButton=null):void
 		{
 			if(item==null)				item=Skin.getRodatioButton(label);
 			else						item.label=label;
-			this.addItem(item)
+			this.addItem(item);
 		}
 		protected render():void
 		{
@@ -2117,10 +2226,14 @@ module sun
 			this._selectIndex=index;
 			var item:BasicButton=this.items[index];
 			this.items.map(setSkinNormal,this);
+			//还原皮肤以及还原字体颜色
 			function setSkinNormal(i:BasicButton):void{
 				i.setSkinNormal();
+				i.labelColor = sun.Color.black;
 			}
+			//更新皮肤以及字体颜色
 			item.setSkinDown();
+			item.labelColor = sun.Color.blueNormal;
 		}
 		get selectIndex(){
 			return this._selectIndex;

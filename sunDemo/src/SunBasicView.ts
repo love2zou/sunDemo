@@ -7,15 +7,16 @@ class SunBasicView extends sun.SunContainer
     {
         this.panelMore=new sun.PanelMoreManager();
         var names:string[]=[];
-        names.push("sun组件一，基本按钮展示");
-        names.push("sun组件二，进度条与滑动器展示");
-        names.push("sun组件三，TIPS展示");
-        names.push("sun组件四，sunDisplay展示");
-        names.push("sun组件五，Tabbar展示");
-        names.push("sun组件六，上下页展示");
+        names.push("sun组件一：基础按钮");
+        names.push("sun组件二：进度条与滑动器展示");
+        names.push("sun组件三：TIPS展示");
+        names.push("sun组件四：sunDisplay展示");
+        names.push("sun组件五：Tabbar展示");
+        names.push("sun组件六：上下页展示");
         for(var i=0;i<names.length;i++){
             var panel:sun.PanelBar=new sun.PanelBar();
             panel.label=names[i];
+            //this.onAddStage.bind(this)：表示将onAddStage函数绑定在当前域SunBasicView内;添加事件之后我们需要监听：给panel添加onAddStage事件
             panel.addEvent(sun.SunEvent.RENDER_COMPLETE,this.onAddStage.bind(this));
             this.panelMore.addItem(panel);
         }
@@ -29,13 +30,14 @@ class SunBasicView extends sun.SunContainer
         this.showsunDisplay(3);
         this.showTabbar(4);
         this.showPreNext(5);
+
         //this.panelMore.once(egret.Event.ADDED_TO_STAGE,this.addToStageMore,this);
 
         this.createCloseBtn();
     }
     protected createCloseBtn():void
     {
-        var btn:sun.BasicButton=new sun.BasicButton();
+        var btn:sun.BasicButton=new sun.BasicButton(sun.SunUI.getRoundRect(60,60,sun.Color.skinNormal),sun.SunUI.getRoundRect(60,60,sun.Color.skinDown));
         btn.label="关闭";
         this.addChild(btn);
         btn.addEventListener(egret.TouchEvent.TOUCH_TAP,this.close,this)
@@ -60,121 +62,180 @@ class SunBasicView extends sun.SunContainer
     protected onAddStage(e:sun.SunEvent):void
     {
         var panel:sun.PanelBar=e.currentTarget as sun.PanelBar;
-        panel.colorBottom=0XFCDF7C;
+        //panel.colorBottom=sun.Color.defaultBgColor;//面板背景
+        panel.colorBottom=0xd3dce6;//面板背景
     }
 
      //------屏幕1-----
     protected showButton(index:number):void
     {
         var panel:sun.PanelBar=this.panelMore.getItem(index) as sun.PanelBar;
-        //-----------
+        //-----------默认、primary、success、warning、error
         var btn1:sun.BasicButton=new sun.BasicButton();
-        btn1.label="默认皮肤按钮";
+        btn1.label="默认按钮";
         panel.addItem(btn1,10,10);
-        //-----------
+        
+        var primaryBtn:sun.BasicButton=new sun.BasicButton(sun.Skin.primaryNormal,sun.Skin.primaryDown);
+        primaryBtn.label="主要按钮";
+        panel.addItem(primaryBtn,160,10);
+
+        var successBtn:sun.BasicButton=new sun.BasicButton(sun.Skin.successNormal,sun.Skin.successDown);
+        successBtn.label="成功按钮";
+        panel.addItem(successBtn,310,10);
+
+        var warningBtn:sun.BasicButton=new sun.BasicButton(sun.Skin.warningNormal,sun.Skin.warningDown);
+        warningBtn.label="警告按钮";
+        panel.addItem(warningBtn,10,80);
+
+        var errorBtn:sun.BasicButton=new sun.BasicButton(sun.Skin.errorNormal,sun.Skin.errorDown);
+        errorBtn.label="危险按钮";
+        panel.addItem(errorBtn,160,80);    
+  
+        //-----------随机颜色
         var normal:Sprite=sun.Skin.randomRect;
         var down:Sprite=sun.Skin.randomRect;
         var btn1:sun.BasicButton=new sun.BasicButton(normal,down);
-        btn1.label="随机颜色皮肤按钮";
-        panel.addItem(btn1,10,90);
-        //-----------
-        var normal3:sun.Scale9Image=new sun.Scale9Image("btn1_png");
-        var down3:sun.Scale9Image=new sun.Scale9Image("btn2_png");
-        var btn1:sun.BasicButton=new sun.BasicButton(normal3,down3);
-        btn1.label="外部加载的皮肤"
-        panel.addItem(btn1,300,100);
+        btn1.label="随机颜色按钮";
+        panel.addItem(btn1,310,80);
+        //-----------确定 和 取消
+        var normal2:sun.Scale9Image=new sun.Scale9Image("btn_yellow_bg_png");
+        var down2:sun.Scale9Image=new sun.Scale9Image("btn_yellow_bg_png");
+        var btn2:sun.BasicButton=new sun.BasicButton(normal2,down2);
+        btn2.skinAutoScale=false;//不自动改变大小
+        btn2.labelSize = 20;
+        btn2.label="确定";
+        panel.addItem(btn2,10,150);
+        var normal3:sun.Scale9Image=new sun.Scale9Image("btn_green_bg_png");
+        var down3:sun.Scale9Image=new sun.Scale9Image("btn_green_bg_png");
+        var btn3:sun.BasicButton=new sun.BasicButton(normal3,down3);
+        btn3.skinAutoScale=false;//不自动改变大小
+        btn3.labelSize = 20;
+        btn3.label="取消";
+        panel.addItem(btn3,120,150);
         //---------
         var normal3:sun.Scale9Image=new sun.Scale9Image("btn1_png");
         var down3:sun.Scale9Image=new sun.Scale9Image("btn2_png");
-        normal3.width=down3.width=280;
-        normal3.height=down3.height=100;
+        normal3.width=down3.width=250;
+        normal3.height=down3.height=60;
         var btn1:sun.BasicButton=new sun.BasicButton(normal3,down3);
         btn1.skinAutoScale=false;//不自动改变大小
         btn1.label="外部加载的皮肤"
-        panel.addItem(btn1,300,200);
-        //-----------
-        var normal:Sprite=sun.Skin.switchOn;
-        var down:Sprite=sun.Skin.switchOn;
-        var normal2:Sprite=sun.Skin.switchOff;
-        var down2:Sprite=sun.Skin.switchOff;
-        var btn4:sun.MoreSkinButton=new sun.MoreSkinButton([normal,down,normal2,down2]);
-        btn4.toggleSwitch=true;
-        panel.addItem(new sun.Label("toggleSwitch按钮",0),10,300);
-        panel.addItem(btn4,10,340);
-        //-----------
-        var items:any[]=["我帅","我很帅","我双酷双帅","我帅得惊动上帝"];
-        var radioButton:sun.RadioButtonBar=new sun.RadioButtonBar;
+        panel.addItem(btn1,250,150);
+
+        //-----------开关按钮
+        var normal_ON:Sprite=sun.Skin.switchOn;
+        var down_ON:Sprite=sun.Skin.switchOn;
+        var normal_OFF:Sprite=sun.Skin.switchOff;
+        var down_OFF:Sprite=sun.Skin.switchOff;
+        var btnSwith:sun.MoreSkinButton=new sun.MoreSkinButton([normal_ON,down_ON,normal_OFF,down_OFF]);
+        btnSwith.toggleSwitch=true;
+        panel.addItem(new sun.Label("toggleSwitch按钮",0),10,230);
+        panel.addItem(btnSwith,10,280);
+
+        //-----------单循按钮-竖排
+        var items:any[]=["我帅","我很帅","我帅得掉渣","我帅得惊动上帝"];
+        var radioButton:sun.RadioButtonBar=new sun.RadioButtonBar();
         for(var i:number=0;i<items.length;i++){
             radioButton.addItemLabel(items[i]);
         }
-        radioButton.layout();
-        panel.addItem(new sun.Label("单选框按钮",0),10,500);
-        panel.addItem(radioButton,10,540);
+        radioButton.layout(sun.Const.VERTICAL, 10);
+        panel.addItem(new sun.Label("单选框按钮竖排版",0),10,360);
+        panel.addItem(radioButton,10,420);
         radioButton.addEvent(sun.SunEvent.CHANGE,onHandlerRadion.bind(this));
         function onHandlerRadion(e:sun.SunEvent):void
         {
-            sun.TipsManager.getIns().simpleTips("选择了"+radioButton.selectIndex,new Point(150,550))
+            sun.TipsManager.getIns().simpleTips("选择了"+radioButton.selectIndex,new Point(300,420))
         }
-        //-------------------
-        var items:any[]=["A","B","C","D"];
-        var radioButton_1:sun.RadioButtonBar=new sun.RadioButtonBar;
-        for(var i:number=0;i<items.length;i++){
-            radioButton_1.addItemLabel(items[i]);
-        }
-        radioButton_1.layout(sun.Const.HORIZONTAL,10);
-        panel.addItem(new sun.Label("单选框按钮横排版",0),10,800);
-        panel.addItem(radioButton_1,10,840);
-        //-----------
-        var items:any[]=["我帅","我很帅","我双酷双帅","我帅得惊动上帝"];
-        var checkBox:sun.CheckBoxBar=new sun.CheckBoxBar;
+        //-----------复选按钮-竖排
+        var items:any[]=["我帅","我很帅","我帅得掉渣","我帅得惊动上帝"];
+        var checkBox:sun.CheckBoxBar=new sun.CheckBoxBar();
         var len:number=items.length;
         for(var i:number=0;i<len;i++){
              checkBox.addItemLabel(items[i]);
         }
         checkBox.layout();
-        panel.addItem(new sun.Label("复选框按钮",0),300,500);
-        panel.addItem(checkBox,300,540);
+        panel.addItem(new sun.Label("复选框按钮",0),300,360);
+        panel.addItem(checkBox,300,420);
         checkBox.addEvent(sun.SunEvent.CHANGE,onHandlerCheckBox,this);
         function onHandlerCheckBox(e:sun.SunEvent):void
         {
-            sun.TipsManager.getIns().simpleTips("选择了"+checkBox.selectIndexs,new Point(300,550))
+            sun.TipsManager.getIns().simpleTips("选择了"+checkBox.selectIndexs,new Point(300,420))
         }
-
+        //------------单选按钮-横排
+        var items:any[]=["A","B","C","D"];
+        var radioButton_1:sun.RadioButtonBar=new sun.RadioButtonBar();
+        for(var i:number=0;i<items.length;i++){
+            radioButton_1.addItemLabel(items[i]);
+        }
+        radioButton_1.layout(sun.Const.HORIZONTAL,10);
+        panel.addItem(new sun.Label("单选框按钮横排版",0),10,660);
+        panel.addItem(radioButton_1,10,700);
     }
     //------屏幕2-----
     protected showProgresBar(index:number):void
-    {
-        
+    {       
         var panel:sun.PanelBar=this.panelMore.getItem(index) as sun.PanelBar;
+        panel.addItem(new sun.Label("线性进度条",0),50,10);
         //------默认皮肤-----
         var progressBar:sun.ProgressBar=new sun.ProgressBar();
         progressBar.value=0.5;
-        panel.addItem(progressBar,50,300);
+        panel.addItem(progressBar,50,60);
         var v:string=Math.round(progressBar.value*100)+"%";
-        progressBar.showText(v,-1,-40);
-        //------随机颜色皮肤-----
-        var width=400;
-        var height=30;
-        var skinOut:Sprite=sun.SunUI.getRect(width,height,sun.Color.random);
-        var skinIn:Sprite=sun.SunUI.getRect(width,height,sun.Color.random);
+        progressBar.showText(v);
+
+        var width=300;
+        var height=10;
+        var skinOut:Sprite=sun.SunUI.getRoundRect(width,height,0x404040,15,15,0.75);
+        var skinIn:Sprite=sun.SunUI.getRoundRect(width,height,0x86e01e,15,15);
         var progressBar:sun.ProgressBar=new sun.ProgressBar(skinOut,skinIn);
-        panel.addItem(progressBar,100,50);
+        panel.addItem(progressBar,50,100);
         progressBar.value=0.8;
         var v:string=Math.round(progressBar.value*100)+"%";
         progressBar.showText(v);
+
+        panel.addItem(new sun.Label("百分比内显",0),50,150);
+        var width2=300;
+        var height2=30;
+        var skinOut2:Sprite=sun.SunUI.getRoundRect(width2,height2,0x404040,30,30,0.75);
+        var skinIn2:Sprite=sun.SunUI.getRoundRect(width2,height2,0x86e01e,30,30);
+        var progressBar2:sun.ProgressBar=new sun.ProgressBar(skinOut2,skinIn2);
+        panel.addItem(progressBar2,50,190);
+        progressBar2.value=0.8;
+        var v:string=Math.round(progressBar2.value*100)+"%";
+        progressBar2.labelSize = 16;
+        progressBar2.showText(v,sun.Const.CUSTOM,progressBar2.value*width2 - 40, 6);
+
+        panel.addItem(new sun.Label("环形进度条",0),50,260);
+        var r = 80;
+        var angle = 45;
+        var skinOut3:Sprite=sun.SunUI.getRing(360,r,sun.Color.progressBgColor,1,100,100);
+        var skinIn3:Sprite=sun.SunUI.getRing(360,r,sun.Color.blueNormal,1,100,100);
+        var progressBar3:sun.ProgressBar=new sun.ProgressBar(skinOut3,skinIn3);
+        var angle:number = 0;
+        egret.startTick(function (timeStamp:number):boolean {
+            angle += 0.5;
+            progressBar3.setRingAngle(angle,100,100,r);
+            var v:string=Math.round(angle/360*100)+"%";
+            progressBar3.showText(v,sun.Const.CENTER)
+            angle = angle % 360;
+
+            return true;
+        }, this);
+        panel.addItem(progressBar3,50,300);
+
         //----------------------
+        panel.addItem(new sun.Label("滑动器",0),50,520);
         var sliderBar:sun.SliderBar=new sun.SliderBar();
-        panel.addItem(sliderBar,300,500);
+        panel.addItem(sliderBar,50,580);
         sliderBar.value=0.2;
         sliderBar.addEvent(sun.SunEvent.START,onStartOver,this);
         sliderBar.addEvent(sun.SunEvent.MOVE,onStartOver,this);
         sliderBar.addEvent(sun.SunEvent.OVER,onStartOver,this);
 
         var sliderBar:sun.SliderBar=new sun.SliderBar();
-        panel.addItem(sliderBar,50,650);
+        panel.addItem(sliderBar,450,580);
         sliderBar.layout(sun.Const.VERTICAL);
-        sliderBar.value=0.2;
-       
+        sliderBar.value=0.5;
         
         function onStartOver(e:sun.SunEvent):void
         {

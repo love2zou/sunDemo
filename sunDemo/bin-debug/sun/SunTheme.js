@@ -198,6 +198,18 @@ var sun;
         Const.HORIZONTAL = "horizontal";
         /**布局 竖版*/
         Const.VERTICAL = "vertical";
+        /**方向 顶部*/
+        Const.TOP = "top";
+        /**方向 底部*/
+        Const.BOTTOM = "bottom";
+        /**方向 左*/
+        Const.LEFT = "left";
+        /**方向 右*/
+        Const.RIGHT = "right";
+        /**方向 居中*/
+        Const.CENTER = "center";
+        /**方向 自定义坐标*/
+        Const.CUSTOM = "custom";
         /**形状 方块*/
         Const.SHAPE_RECT = "shape rect";
         /**形状 圆角方块*/
@@ -251,6 +263,12 @@ var sun;
             configurable: true
         });
         ; //按下背景色
+        Object.defineProperty(Color, "progressBgColor", {
+            get: function () { return 0Xebeef5; },
+            enumerable: true,
+            configurable: true
+        });
+        ; //progress bgColor
         Object.defineProperty(Color, "random", {
             //随机颜色
             get: function () { return Math.random() * 0XFFFFFF; },
@@ -272,79 +290,115 @@ var sun;
             configurable: true
         });
         ;
-        Object.defineProperty(Color, "darkBlue", {
+        Object.defineProperty(Color, "blueNormal", {
             //primary颜色
             get: function () { return 0X409eff; },
             enumerable: true,
             configurable: true
         });
         ; //深蓝
-        Object.defineProperty(Color, "lightBlue", {
-            get: function () { return 0Xecf5ff; },
+        Object.defineProperty(Color, "blueNormal2", {
+            get: function () { return 0xecf5ff; },
             enumerable: true,
             configurable: true
         });
         ; //浅蓝
-        Object.defineProperty(Color, "darkGreen", {
+        Object.defineProperty(Color, "blueDown", {
+            get: function () { return 0X66b1ff; },
+            enumerable: true,
+            configurable: true
+        });
+        ; //浅蓝
+        Object.defineProperty(Color, "greenNormal", {
             //success颜色
             get: function () { return 0X67c23a; },
             enumerable: true,
             configurable: true
         });
-        ; //深绿
-        Object.defineProperty(Color, "lightGreen", {
+        ; //深绿	
+        Object.defineProperty(Color, "greenNormal2", {
             get: function () { return 0Xf0f9eb; },
             enumerable: true,
             configurable: true
         });
         ; //浅绿
-        Object.defineProperty(Color, "darkYellow", {
+        Object.defineProperty(Color, "greenDown", {
+            get: function () { return 0X85ce61; },
+            enumerable: true,
+            configurable: true
+        });
+        ; //浅绿
+        Object.defineProperty(Color, "yellowNormal", {
             //warning颜色
             get: function () { return 0Xe6a23c; },
             enumerable: true,
             configurable: true
         });
         ; //深黄
-        Object.defineProperty(Color, "lightYellow", {
+        Object.defineProperty(Color, "yellowNormal2", {
             get: function () { return 0Xfdf6ec; },
             enumerable: true,
             configurable: true
         });
         ; //浅黄
-        Object.defineProperty(Color, "darkRed", {
+        Object.defineProperty(Color, "yellowDown", {
+            get: function () { return 0Xebb563; },
+            enumerable: true,
+            configurable: true
+        });
+        ; //浅黄
+        Object.defineProperty(Color, "redNormal", {
             //error颜色
             get: function () { return 0Xf56c6c; },
             enumerable: true,
             configurable: true
         });
-        ; //深黄
-        Object.defineProperty(Color, "lightRed", {
+        ; //深红
+        Object.defineProperty(Color, "redNormal2", {
             get: function () { return 0Xfef0f0; },
             enumerable: true,
             configurable: true
         });
-        ; //浅黄
-        Object.defineProperty(Color, "darkGray", {
+        ; //浅红
+        Object.defineProperty(Color, "redDown", {
+            get: function () { return 0Xf78989; },
+            enumerable: true,
+            configurable: true
+        });
+        ; //浅红
+        Object.defineProperty(Color, "grayNormal", {
             //不重要颜色
             get: function () { return 0X909399; },
             enumerable: true,
             configurable: true
         });
         ; //深灰
-        Object.defineProperty(Color, "lightGray", {
+        Object.defineProperty(Color, "grayNormal2", {
             get: function () { return 0Xf4f4f5; },
             enumerable: true,
             configurable: true
         });
         ; //浅灰
-        Object.defineProperty(Color, "black", {
-            get: function () { return 0X151515; },
+        Object.defineProperty(Color, "grayDown", {
+            get: function () { return 0Xa6a9ad; },
             enumerable: true,
             configurable: true
         });
-        ;
-        Object.defineProperty(Color, "gray", {
-            get: function () { return 0X666666; },
+        ; //浅灰
+        Object.defineProperty(Color, "switchOnDown", {
+            get: function () { return 0X13ce66; },
+            enumerable: true,
+            configurable: true
+        });
+        ; //开-绿色
+        Object.defineProperty(Color, "switchOffDown", {
+            get: function () { return 0Xff4949; },
+            enumerable: true,
+            configurable: true
+        });
+        ; //关-红色
+        Object.defineProperty(Color, "black", {
+            get: function () { return 0X101010; },
             enumerable: true,
             configurable: true
         });
@@ -407,6 +461,77 @@ var sun;
     var Skin = (function () {
         function Skin() {
         }
+        Object.defineProperty(Skin, "buttonNormal", {
+            /**默认按钮 */
+            get: function () { return sun.SunUI.getRect(60, 30, sun.Color.skinNormal); },
+            enumerable: true,
+            configurable: true
+        });
+        ;
+        Object.defineProperty(Skin, "buttonDown", {
+            get: function () { return sun.SunUI.getRect(60, 30, sun.Color.skinDown); },
+            enumerable: true,
+            configurable: true
+        });
+        ;
+        Object.defineProperty(Skin, "primaryNormal", {
+            /** 主要按钮-primary */
+            get: function () { return sun.SunUI.getRoundRect(60, 30, sun.Color.blueNormal); },
+            enumerable: true,
+            configurable: true
+        });
+        ;
+        Object.defineProperty(Skin, "primaryNormal2", {
+            get: function () { return sun.SunUI.getRoundRect(60, 30, sun.Color.blueNormal2); },
+            enumerable: true,
+            configurable: true
+        });
+        ;
+        Object.defineProperty(Skin, "primaryDown", {
+            get: function () { return sun.SunUI.getRoundRect(60, 30, sun.Color.blueDown); },
+            enumerable: true,
+            configurable: true
+        });
+        ;
+        Object.defineProperty(Skin, "successNormal", {
+            /** 成功按钮-success */
+            get: function () { return sun.SunUI.getRoundRect(60, 30, sun.Color.greenNormal); },
+            enumerable: true,
+            configurable: true
+        });
+        ;
+        Object.defineProperty(Skin, "successDown", {
+            get: function () { return sun.SunUI.getRoundRect(60, 30, sun.Color.greenDown); },
+            enumerable: true,
+            configurable: true
+        });
+        ;
+        Object.defineProperty(Skin, "warningNormal", {
+            /** 警告按钮-warning */
+            get: function () { return sun.SunUI.getRoundRect(60, 30, sun.Color.yellowNormal); },
+            enumerable: true,
+            configurable: true
+        });
+        ;
+        Object.defineProperty(Skin, "warningDown", {
+            get: function () { return sun.SunUI.getRoundRect(60, 30, sun.Color.yellowDown); },
+            enumerable: true,
+            configurable: true
+        });
+        ;
+        Object.defineProperty(Skin, "errorNormal", {
+            /** 危险按钮-error */
+            get: function () { return sun.SunUI.getRoundRect(60, 30, sun.Color.redNormal); },
+            enumerable: true,
+            configurable: true
+        });
+        ;
+        Object.defineProperty(Skin, "errorDown", {
+            get: function () { return sun.SunUI.getRoundRect(60, 30, sun.Color.redDown); },
+            enumerable: true,
+            configurable: true
+        });
+        ;
         Object.defineProperty(Skin, "randomRect", {
             /**随机色的方与圆 */
             get: function () { return sun.SunUI.getRect(60, 60, sun.Color.random); },
@@ -421,27 +546,14 @@ var sun;
         });
         ;
         Object.defineProperty(Skin, "pointNormal", {
-            /**默认点 */
-            get: function () { return sun.SunUI.getCircle(6, sun.Color.black); },
+            /**默认点-轮播 */
+            get: function () { return sun.SunUI.getCircle(6, sun.Color.white, 0.4); },
             enumerable: true,
             configurable: true
         });
         ;
         Object.defineProperty(Skin, "pointDown", {
-            get: function () { return sun.SunUI.getCircle(6, sun.Color.gray); },
-            enumerable: true,
-            configurable: true
-        });
-        ;
-        Object.defineProperty(Skin, "buttonNormal", {
-            /**默认按钮 */
-            get: function () { return sun.SunUI.getRect(60, 30, sun.Color.skinNormal); },
-            enumerable: true,
-            configurable: true
-        });
-        ;
-        Object.defineProperty(Skin, "buttonDown", {
-            get: function () { return sun.SunUI.getRect(60, 30, sun.Color.skinDown); },
+            get: function () { return sun.SunUI.getCircle(6, sun.Color.white); },
             enumerable: true,
             configurable: true
         });
@@ -454,7 +566,7 @@ var sun;
         });
         ;
         Object.defineProperty(Skin, "radioOn", {
-            get: function () { return sun.SunUI.getRadioCircle(sun.Color.white, sun.Color.black, 1); },
+            get: function () { return sun.SunUI.getRadioCircle(sun.Color.blueNormal, sun.Color.white, 1); },
             enumerable: true,
             configurable: true
         });
@@ -467,48 +579,48 @@ var sun;
         });
         ;
         Object.defineProperty(Skin, "checkBoxOn", {
-            get: function () { return sun.SunUI.getCheckBoxRect(sun.Color.white, sun.Color.black, 1); },
+            get: function () { return sun.SunUI.getCheckBoxRect(sun.Color.blueNormal, sun.Color.white, 1); },
             enumerable: true,
             configurable: true
         });
         ;
         Object.defineProperty(Skin, "switchOff", {
             /**默认开关 */
-            get: function () { return sun.SunUI.getSwitch(sun.Color.skinNormal, sun.Color.white); },
+            get: function () { return sun.SunUI.getSwitch(sun.Color.switchOffDown, sun.Color.white); },
             enumerable: true,
             configurable: true
         });
         ;
         Object.defineProperty(Skin, "switchOn", {
-            get: function () { return sun.SunUI.getSwitch(sun.Color.skinDown, sun.Color.white, 1); },
+            get: function () { return sun.SunUI.getSwitch(sun.Color.switchOnDown, sun.Color.white, 1); },
             enumerable: true,
             configurable: true
         });
         ;
         Object.defineProperty(Skin, "progressBackground", {
             /**默认进度条 */
-            get: function () { return sun.SunUI.getRect(300, 20, sun.Color.skinDown); },
+            get: function () { return sun.SunUI.getRoundRect(300, 10, sun.Color.progressBgColor, 15, 15); },
             enumerable: true,
             configurable: true
         });
         Object.defineProperty(Skin, "progressValue", {
-            get: function () { return sun.SunUI.getRect(300, 20, sun.Color.skinNormal); },
+            get: function () { return sun.SunUI.getRoundRect(300, 10, sun.Color.blueNormal, 15, 15); },
             enumerable: true,
             configurable: true
         });
         Object.defineProperty(Skin, "sliderBackground", {
             /**默认滑动器 */
-            get: function () { return sun.SunUI.getRect(300, 10, sun.Color.skinDown); },
+            get: function () { return sun.SunUI.getRoundRect(300, 10, sun.Color.progressBgColor, 15, 15); },
             enumerable: true,
             configurable: true
         });
         Object.defineProperty(Skin, "sliderValue", {
-            get: function () { return sun.SunUI.getRect(300, 10, sun.Color.skinNormal); },
+            get: function () { return sun.SunUI.getRoundRect(300, 10, sun.Color.skinNormal, 15, 15); },
             enumerable: true,
             configurable: true
         });
         Object.defineProperty(Skin, "sliderBar", {
-            get: function () { return sun.SunUI.getCircle(15, sun.Color.white); },
+            get: function () { return sun.SunUI.getCircle(12, sun.Color.white); },
             enumerable: true,
             configurable: true
         });
@@ -539,11 +651,13 @@ var sun;
             enumerable: true,
             configurable: true
         });
+        /** 获取单选按钮 @param（文字） */
         Skin.getRodatioButton = function (label) {
             var btn = new BasicButton(sun.Skin.radioOff, sun.Skin.radioOn);
             btn.skinAutoScale = false;
             btn.label = label;
             btn.labelColor = sun.Color.black;
+            //设置按钮文字位置
             btn.setLabelPoint(40, 0);
             return btn;
         };
@@ -889,6 +1003,18 @@ var sun;
             s.graphics.endFill();
             return s;
         };
+        /**得到环形 angle:角度值，r:半径，c:背景色， a:透明度，0到1之间的小数，x y：圆心位置*/
+        SunUI.getRing = function (angle, r, c, a, x, y) {
+            if (c === void 0) { c = 0; }
+            if (a === void 0) { a = 1; }
+            if (x === void 0) { x = 0; }
+            if (y === void 0) { y = 0; }
+            var s = new Sprite();
+            s.graphics.lineStyle(15, c, a);
+            s.graphics.drawArc(x, y, r, -Math.PI / 2, angle * Math.PI / 180 - Math.PI / 2, false); //从-90度方向开始画圆
+            s.graphics.endFill();
+            return s;
+        };
         /**得到圆形 带上透明度 a:透明度，0到1之间的小数*/
         SunUI.getCircle = function (r, c, a, x, y) {
             if (c === void 0) { c = 0; }
@@ -975,13 +1101,13 @@ var sun;
             s.addChild(text);
             return s;
         };
-        /**得到矩形-switchButton bc背景颜色，gc钩选的颜色,type为0是没有钩为1是有钩*/
+        /**得到矩形-switchButton bc背景颜色，gc钩选的颜色,type为0是没有钩，为1是有钩*/
         SunUI.getSwitch = function (bc, gc, type) {
             if (bc === void 0) { bc = 0XFFFFFF; }
             if (gc === void 0) { gc = 0; }
             if (type === void 0) { type = 0; }
-            var node = sun.SunUI.getRoundRect(80, 50, bc, 60, 60);
-            node.addChild(sun.SunUI.getCircle(22, gc, type == 0 ? 25 : 55, 25));
+            var node = sun.SunUI.getRoundRect(90, 40, bc, 50, 50);
+            node.addChild(sun.SunUI.getCircle(17, gc, 1, type == 0 ? 21 : 70, 20));
             return node;
         };
         /**得到矩形-复选框 bc背景颜色，gc钩的颜色,type为0是没有钩为1是有钩*/
@@ -990,17 +1116,20 @@ var sun;
             if (gc === void 0) { gc = 0; }
             if (type === void 0) { type = 0; }
             var s = new Sprite;
-            s.addChild(this.getRect(40, 40, bc));
+            //s.addChild(this.getRect(40,40,bc));
+            s.addChild(this.getRoundRect(32, 32, bc, 4, 4));
             if (type == 1) {
-                var r = new Sprite;
+                var r = new Sprite();
                 r.graphics.beginFill(gc);
-                r.graphics.moveTo(0, 20);
-                r.graphics.lineTo(20, 36);
-                r.graphics.lineTo(44, 8);
-                r.graphics.lineTo(36, 0);
-                r.graphics.lineTo(20, 18);
-                r.graphics.lineTo(12, 8);
-                r.graphics.lineTo(0, 20);
+                r.graphics.moveTo(4, 18);
+                r.graphics.lineTo(12, 26);
+                r.graphics.lineTo(28, 8);
+                r.graphics.lineTo(26, 6);
+                r.graphics.lineTo(12, 22);
+                r.graphics.lineTo(6, 16);
+                r.graphics.lineTo(4, 18);
+                // r.graphics.lineTo(20,36);r.graphics.lineTo(44,8);r.graphics.lineTo(36,0);r.graphics.lineTo(20,18);
+                // r.graphics.lineTo(12,8);r.graphics.lineTo(0,20);
                 s.addChild(r);
             }
             return s;
@@ -1011,10 +1140,10 @@ var sun;
             if (gc === void 0) { gc = 0; }
             if (type === void 0) { type = 0; }
             var s = new Sprite;
-            s.addChild(this.getCircle(16, bc, 16, 16));
+            s.addChild(this.getCircle(16, bc, 1, 16, 16));
             s.graphics.lineStyle(1, 0);
             if (type == 1) {
-                var r = this.getCircle(8, gc, 16, 16);
+                var r = this.getCircle(6, gc, 1, 16, 16);
                 s.addChild(r);
             }
             return s;
@@ -1336,7 +1465,9 @@ var sun;
         __extends(PanelMoreManager, _super);
         function PanelMoreManager() {
             var _this = _super.call(this) || this;
+            /** 单选按钮 */
             _this.radioButton = new RadioButtonBar();
+            /** 当前页 */
             _this.currentPage = 0;
             _this.posStartX = 0;
             _this.moveItems = [];
@@ -1345,16 +1476,21 @@ var sun;
             _this.radioButton.isAutoLayout = true;
             return _this;
         }
+        /** 开启监听 */
         PanelMoreManager.prototype.open = function () {
             this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouch, this);
         };
+        /** 关闭监听 */
         PanelMoreManager.prototype.close = function () {
             this.stage.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this.onTouch, this);
         };
+        /** 更新面板显示内容 */
         PanelMoreManager.prototype.update = function () {
+            //移除所有内容
             this.container.removeChildren();
             var itemW;
             var itemH;
+            //设置每一个面板的宽高
             if (this.items.length > 0) {
                 var item = this.items[0];
                 this.container.addChild(item);
@@ -1362,11 +1498,13 @@ var sun;
                 itemH = item.windowRect.height;
                 this.panelWidth = itemW;
             }
+            //绘制面板的走马灯圆点
             var len = this.items.length;
             for (var i = 0; i < len; i++) {
                 var btn = new BasicButton(sun.Skin.pointNormal, sun.Skin.pointDown);
                 this.radioButton.addItem(btn);
             }
+            //默认选中第一个
             btn = this.radioButton.getItem(0);
             btn.setSkinDown();
             this.radioButton.x = (itemW - len * 22) >> 1;
@@ -1652,7 +1790,7 @@ var sun;
     /** 进度条，继承SunContainer容器 */
     var ProgressBar = (function (_super) {
         __extends(ProgressBar, _super);
-        /*** 参数为显示对象 @param(背景皮肤，实际值皮肤) */
+        /*** 参数为显示对象 @param(背景皮肤，实际值皮肤,是否遮罩) */
         function ProgressBar(bg, value) {
             if (bg === void 0) { bg = null; }
             if (value === void 0) { value = null; }
@@ -1686,19 +1824,57 @@ var sun;
             enumerable: true,
             configurable: true
         });
-        /*** 显示实际值 */
-        ProgressBar.prototype.showText = function (v, x, y) {
-            if (x === void 0) { x = -1; }
-            if (y === void 0) { y = -1; }
+        Object.defineProperty(ProgressBar.prototype, "labelSize", {
+            /** 设置文本字体大小 */
+            set: function (value) {
+                this.text.size = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        /**设置角度(环形图使用) */
+        ProgressBar.prototype.setRingAngle = function (angle, x, y, r, c, a) {
+            if (x === void 0) { x = 0; }
+            if (y === void 0) { y = 0; }
+            if (r === void 0) { r = 100; }
+            if (c === void 0) { c = 0; }
+            if (a === void 0) { a = 1; }
+            var m = sun.SunUI.getRing(angle, r, c, a, x, y);
+            if (this && this.contains(m))
+                this.removeChild(m);
+            this.addChild(m);
+            this.skinValue.mask = m;
+        };
+        /*** 显示实际值：d表示方向 */
+        ProgressBar.prototype.showText = function (v, d, x, y) {
+            if (d === void 0) { d = Const.RIGHT; }
+            if (x === void 0) { x = 0; }
+            if (y === void 0) { y = 0; }
             this.text.text = v;
-            if (x == -1)
-                this.text.x = (this.skinBg.width - this.text.width) >> 1;
-            else
-                this.text.x = x;
-            if (y == -1)
+            if (d == Const.LEFT) {
+                this.text.x = this.skinBg.x - 10;
+                this.text.y = this.skinBg.y;
+            }
+            else if (d == Const.TOP) {
+                this.text.x = (this.skinBg.width >> 1) - 15;
+                this.text.y = -this.skinBg.height - 5;
+            }
+            else if (d == Const.BOTTOM) {
+                this.text.x = (this.skinBg.width >> 1) - 15;
                 this.text.y = this.skinBg.height + 5;
-            else
+            }
+            else if (d == Const.CENTER) {
+                this.text.x = (this.skinBg.width >> 1) - 15;
+                this.text.y = (this.skinBg.height >> 1) - 5;
+            }
+            else if (d == Const.RIGHT) {
+                this.text.x = this.skinBg.width + 18;
+                this.text.y = (this.skinBg.height - this.text.height) >> 1;
+            }
+            else {
+                this.text.x = x;
                 this.text.y = y;
+            }
         };
         return ProgressBar;
     }(SunContainer));
@@ -1735,15 +1911,18 @@ var sun;
         SliderBar.prototype.onTouch = function (e) {
             switch (e.type) {
                 case egret.TouchEvent.TOUCH_BEGIN:
+                    this.skinBar.scaleX = this.skinBar.scaleY = 1.2;
                     this.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.onTouch, this);
                     this.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.onTouch, this);
                     this.dispEvent(SunEvent.START);
                     break;
                 case egret.TouchEvent.TOUCH_MOVE:
+                    this.skinBar.scaleX = this.skinBar.scaleY = 1.2;
                     this.moveDo(e.stageX, e.stageY);
                     this.dispEvent(SunEvent.MOVE);
                     break;
                 case egret.TouchEvent.TOUCH_END:
+                    this.skinBar.scaleX = this.skinBar.scaleY = 1;
                     this.stage.removeEventListener(egret.TouchEvent.TOUCH_END, this.onTouch, this);
                     this.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this.onTouch, this);
                     this.dispEvent(SunEvent.OVER);
@@ -2360,19 +2539,22 @@ var sun;
         __extends(MoreSkinButton, _super);
         function MoreSkinButton(skins) {
             var _this = _super.call(this, skins[0], skins[1]) || this;
+            /** 当前值 */
             _this._currentPage = 0;
             _this.skins = skins;
             return _this;
         }
-        /**更新到第几个按钮同时刷新皮肤 */
+        /** 更新到第几个按钮同时刷新皮肤 */
         MoreSkinButton.prototype.updatePage = function (value) {
             this.currentPage = value;
             this.setSkinNormal();
         };
         Object.defineProperty(MoreSkinButton.prototype, "currentPage", {
+            /** 获取当前值 */
             get: function () {
                 return this._currentPage;
             },
+            /** 更新皮肤，但不刷新皮肤 */
             set: function (value) {
                 value = value * 2 == this.skins.length ? 0 : value;
                 this._currentPage = value;
@@ -2384,12 +2566,14 @@ var sun;
             configurable: true
         });
         Object.defineProperty(MoreSkinButton.prototype, "toggleSwitch", {
+            /** 设置可触摸事件 */
             set: function (value) {
                 this._toggleSwitch = value;
             },
             enumerable: true,
             configurable: true
         });
+        /** 绑定触发事件 */
         MoreSkinButton.prototype.onTouch = function (e) {
             if (e.type == egret.TouchEvent.TOUCH_END) {
                 if (this._toggleSwitch) {
@@ -2488,12 +2672,13 @@ var sun;
     }(SunContainer));
     sun.Label = Label;
     __reflect(Label.prototype, "sun.Label");
-    /** 复选框按钮 */
+    /** 复选框按钮,继承BasicBar:添加元素等 */
     var CheckBoxBar = (function (_super) {
         __extends(CheckBoxBar, _super);
         function CheckBoxBar() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        /** 添加复选按钮 */
         CheckBoxBar.prototype.addItemLabel = function (label, item) {
             if (item === void 0) { item = null; }
             if (item == null)
@@ -2514,6 +2699,11 @@ var sun;
         };
         CheckBoxBar.prototype.onClick = function (e) {
             var item = e.currentTarget;
+            //字体颜色改变
+            if (item.currentPage == 1)
+                item.labelColor = sun.Color.blueNormal;
+            else
+                item.labelColor = sun.Color.black;
             this.dispEvent(sun.SunEvent.CHANGE);
         };
         Object.defineProperty(CheckBoxBar.prototype, "selectIndexs", {
@@ -2533,14 +2723,16 @@ var sun;
     }(BasicBar));
     sun.CheckBoxBar = CheckBoxBar;
     __reflect(CheckBoxBar.prototype, "sun.CheckBoxBar");
-    /**单选框按钮 */
+    /** 单选框按钮 */
     var RadioButtonBar = (function (_super) {
         __extends(RadioButtonBar, _super);
         function RadioButtonBar() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
+            /** 是否自动布局 */
             _this.isAutoLayout = false;
             return _this;
         }
+        /** 添加单选按钮 */
         RadioButtonBar.prototype.addItemLabel = function (label, item) {
             if (item === void 0) { item = null; }
             if (item == null)
@@ -2574,10 +2766,14 @@ var sun;
                 this._selectIndex = index;
                 var item = this.items[index];
                 this.items.map(setSkinNormal, this);
+                //还原皮肤以及还原字体颜色
                 function setSkinNormal(i) {
                     i.setSkinNormal();
+                    i.labelColor = sun.Color.black;
                 }
+                //更新皮肤以及字体颜色
                 item.setSkinDown();
+                item.labelColor = sun.Color.blueNormal;
             },
             enumerable: true,
             configurable: true

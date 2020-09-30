@@ -116,7 +116,7 @@ class GameAnimation extends BView
 
         this.addItem(new sun.Label("控制速度",0XFFFFFF),100,10);
         var s:sun.SliderBar=new sun.SliderBar();
-        s.value=0;
+        s.value=0.2;
         this.addItem(s,50,50);
         s.addEvent(sun.SunEvent.OVER,this.onSlider,this);
     }
@@ -145,14 +145,14 @@ class GameNotify extends BView
         this.createCloseBtn();
         this.createView();
 
-        this.setButton("向左滚动",100,500);
-        this.setButton("向上滚动",100,600);
-        this.setButton("向下滚动",100,700);
+        this.setButton("向左滚动",100,350);
+        this.setButton("向上滚动",100,450);
+        this.setButton("向下滚动",100,550);
 
-        this.addItem(new sun.Label("控制速度",0X101010),200,400);
+        this.addItem(new sun.Label("控制速度",0X101010),200,200);
         var s:sun.SliderBar=new sun.SliderBar();
         s.value=0.5;
-        this.addItem(s,50,450);
+        this.addItem(s,50,250);
         s.addEvent(sun.SunEvent.OVER,this.onSlider,this);
         this.slider=s;
     }

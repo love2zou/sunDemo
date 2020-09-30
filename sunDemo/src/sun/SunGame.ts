@@ -12,7 +12,7 @@ module sunGame
             sun.GameData.stageHeight = stage.stageHeight;
             sun.GameData.stage = stage;
             //初始化部分功能
-            //sun.TipsManager.getIns().init(stage);
+            sun.TipsManager.getIns().init(stage);
             sun.LogManager.getIns().init(stage);
             sun.AlertManager.getIns().init(stage);
         }
